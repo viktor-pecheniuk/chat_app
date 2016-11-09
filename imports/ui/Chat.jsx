@@ -2,7 +2,9 @@ import Moment from 'moment';
 
 import React, { Component, PropTypes } from 'react';
 
-import { Card, CardHeader } from 'material-ui/Card';
+import { Card, CardHeader, CardActions } from 'material-ui/Card';
+
+import FlatButton from 'material-ui/FlatButton';
 
 import { _ } from 'underscore';
 
@@ -37,6 +39,12 @@ export default class Chat extends Component {
           subtitle={<p>{this.props.chat.lastMessage.text} <b>{this.getTime()}</b></p>}
           avatar={this.props.chat.picture}
         />
+        <CardActions>
+         <FlatButton
+           label="Delete Chat"
+           onClick={() => this.props.deleteChat(this.props.chat)}
+         />
+      </CardActions>
       </Card>
     );
   }
@@ -44,4 +52,5 @@ export default class Chat extends Component {
 
 Chat.propTypes = {
   chat: PropTypes.object.isRequired,
+  deleteChat: PropTypes.func.isRequired,
 };
